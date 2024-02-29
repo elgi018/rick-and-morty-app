@@ -1,21 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useGetCharacters } from '@/hooks/custom-hooks'
 import { TCharacter } from '@/lib/types'
 import React from 'react'
 import CharacterCard from './character-card'
 import ReactPaginate from 'react-paginate'
+import { useRouter } from 'next/navigation'
 
-type Props = {}
+type Props = {
+  q: string
+  page: string
+}
 
-const CharacterList = (props: Props) => {
-  const [selectedPage, setSelectedPage] = useState(0)
-  const { data, setPageNumber } = useGetCharacters()
+const CharacterList = ({ q = '', page = '1' }: Props) => {
+  const router = useRouter()
+  // const [selectedPage, setSelectedPage] = useState(+page - 1)
+  const { data } = useGetCharacters(q, page)
 
   const handlePageClick = (e: any) => {
-    setSelectedPage(e.selected)
-    setPageNumber(e.selected + 1)
+    // setSelectedPage(e.selected)
+    // setPageNumber(e.selected + 1)
+    router.push(`/?q=${q}&page=${e.selected + 1}`)
   }
 
   return (
@@ -39,7 +45,7 @@ const CharacterList = (props: Props) => {
           previousLabel='< Previous'
           renderOnZeroPageCount={null}
           activeClassName='font-bold text-gray-200'
-          forcePage={selectedPage}
+          forcePage={+page - 1}
         />
       )}
     </div>

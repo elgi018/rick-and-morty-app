@@ -3,15 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { TCharacter } from '@/lib/types'
 import Image from 'next/image'
 import { GetCharacterStatusColor } from '@/lib/utils'
-import CharacterCard from './character-card'
-import { Separator } from './ui/separator'
 
 type Props = {
   character: TCharacter
 }
 
 const CharacterDetailsCard = ({ character }: Props) => {
-  console.log('🚀 ~ CharacterDetailsCard ~ character:', character)
+  //   console.log('🚀 ~ CharacterDetailsCard ~ character:', character)
   if (!character) return <h1>No Data</h1>
   return (
     <div className='container pt-10'>

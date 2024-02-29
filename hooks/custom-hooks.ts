@@ -1,7 +1,7 @@
 import { GetCharacterById, GetCharacters, GetEpisodes } from '@/actions/actions'
-import { TCharacter, TCharacters } from '@/lib/types'
+// import { TCharacter, TCharacters } from '@/lib/types'
 import { CalcUniqueDimensions } from '@/lib/utils'
-import useFilterStore from '@/store/filter-state'
+// import useFilterStore from '@/store/filter-state'
 import useLoaderStore from '@/store/loader-state'
 import { useEffect, useState } from 'react'
 
@@ -40,15 +40,16 @@ export const useGetEpisodes = () => {
   return [data, isLoading]
 }
 
-export const useGetCharacters = () => {
+export const useGetCharacters = (q: string, page: string) => {
   const [data, setData] = useState<any>()
-  const [pageNumber, setPageNumber] = useState(1)
-  const { filter, setFilter } = useFilterStore((state) => state)
-  const { isLoading, setIsLoading } = useLoaderStore((state) => state)
+  // const [pageNumber, setPageNumber] = useState(1)
+  // const { filter, setFilter } = useFilterStore((state) => state)
+  const { setIsLoading } = useLoaderStore((state) => state)
 
   const getData = async () => {
     setIsLoading(true)
-    const characters = await GetCharacters(pageNumber, filter)
+    const characters = await GetCharacters(page, q)
+    // const characters = await GetCharacters(page || pageNumber, filter)
     characters && setData(characters)
     setIsLoading(false)
   }
@@ -56,9 +57,11 @@ export const useGetCharacters = () => {
   useEffect(() => {
     getData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter, pageNumber])
+  }, [q, page])
+  // }, [pageNumber])
 
-  return { data, setPageNumber, setFilter }
+  return { data }
+  // return { data, setPageNumber, setFilter }
 }
 
 export const useGetCharacterById = (id: string) => {

@@ -1,24 +1,19 @@
 'use client'
 
 import React, { FormEvent, useState } from 'react'
-import useFilterStore from '@/store/filter-state'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 type Props = {}
 
 const FilterInput = (props: Props) => {
-  const setFilter = useFilterStore((state) => state.setFilter)
-  const pathname = usePathname()
+  const searchParams = useSearchParams()
   const router = useRouter()
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>(searchParams.get('q') || '')
 
   const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setFilter(value)
 
-    if (pathname !== '/') {
-      router.push('/')
-    }
+    router.push(`/?q=${value}&page=1`)
   }
 
   return (

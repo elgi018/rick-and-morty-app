@@ -1,5 +1,4 @@
-import { TCharacter, TCharacters } from '@/lib/types'
-import { CalcUniqueDimensions } from '@/lib/utils'
+import { TCharacters } from '@/lib/types'
 import { request, gql } from 'graphql-request'
 
 const MASTER_URL = 'https://rickandmortyapi.com/graphql'
@@ -34,7 +33,7 @@ export const GetEpisodes = async (pageNumber: number) => {
   return result
 }
 
-export const GetCharacters = async (pageNumber: number, filter: string) => {
+export const GetCharacters = async (pageNumber: string, filter: string) => {
   const query = gql`
     {
         characters(page: ${pageNumber}, filter: {name: "${filter}"}) {
