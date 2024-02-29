@@ -7,7 +7,7 @@ import { GetCharacterStatusColor } from '@/lib/utils'
 
 type Props = {
   character: TCharacter
-  detailsCard: boolean
+  detailsCard?: boolean
 }
 
 const CharacterCard = ({ character, detailsCard = false }: Props) => {
