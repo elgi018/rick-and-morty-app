@@ -6,9 +6,10 @@ import { useRouter, useSearchParams } from 'next/navigation'
 type Props = {}
 
 const FilterInput = (props: Props) => {
-  const searchParams = useSearchParams()
+  // const searchParams = useSearchParams()
   const router = useRouter()
-  const [value, setValue] = useState<string>(searchParams.get('q') || '')
+  const [value, setValue] = useState<string>('')
+  // const [value, setValue] = useState<string>(searchParams.get('q') || '')
 
   const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
