@@ -66,7 +66,7 @@ const CharacterFromEpisodeCard = ({ char }: TCharacterFromEpisodeCardProps) => {
       className='hover:cursor-pointer hover:scale-105 transition-all duration-500'
     >
       <span className=' text-sm line-clamp-1'>{char.name}</span>
-      <Image src={char.image} alt='' width={200} height={300} className='rounded-md' />
+      <Image src={char.image} alt='' width={200} height={300} className='rounded-xl' />
     </Link>
   )
 }

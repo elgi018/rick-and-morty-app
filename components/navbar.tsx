@@ -4,6 +4,8 @@ import React from 'react'
 import FilterInput from './filter-input'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
+import logo from '@/assets/logo2.png'
 
 type Props = {}
 
@@ -14,8 +16,8 @@ const Navbar = (props: Props) => {
       <div className='container flex justify-between flex-row gap-8 items-center'>
         {/* Links */}
         <div className='flex flex-row gap-10 items-center'>
-          <Link href='/'>
-            <h1>Logo</h1>
+          <Link href='/' className='mr-10'>
+            <Image src={logo} alt='logo' height={100} />
           </Link>
 
           <Link
