@@ -1,4 +1,5 @@
 import { GetCharacterById, GetCharacters, GetEpisodes } from '@/actions/actions'
+import { TEpisode, TTop10Episodes } from '@/lib/types'
 // import { TCharacter, TCharacters } from '@/lib/types'
 import { CalcUniqueDimensions } from '@/lib/utils'
 // import useFilterStore from '@/store/filter-state'
@@ -6,8 +7,9 @@ import useLoaderStore from '@/store/loader-state'
 import { useEffect, useState } from 'react'
 
 export const useGetEpisodes = () => {
-  const [data, setData] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [data, setData] = useState<TTop10Episodes[]>([])
+
+  const { setIsLoading } = useLoaderStore((state) => state)
 
   const getData = async () => {
     setIsLoading(true)
@@ -19,7 +21,7 @@ export const useGetEpisodes = () => {
     const Page3: any = await GetEpisodes(3)
     episodes.push(...Page3.episodes.results)
 
-    const newList = episodes.map((episode: any) => {
+    const newList = episodes.map((episode: TEpisode) => {
       const uniqueDimensions = CalcUniqueDimensions(episode.characters)
       return {
         ...episode,
@@ -35,9 +37,10 @@ export const useGetEpisodes = () => {
 
   useEffect(() => {
     getData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return [data, isLoading]
+  return { data }
 }
 
 export const useGetCharacters = (q: string, page: string) => {

@@ -17,6 +17,7 @@ export const GetEpisodes = async (pageNumber: number) => {
       name
       air_date
       characters {
+        id
         image
         name
         origin {

@@ -12,15 +12,12 @@ const Navbar = (props: Props) => {
   return (
     <nav className='bg-gray-900 p-4 text-gray-400'>
       <div className='container flex justify-between flex-row gap-8 items-center'>
-        <Link href='/'>
-          <h1>Logo</h1>
-        </Link>
-
-        {/* Search Input */}
-        <FilterInput />
-
         {/* Links */}
-        <div className='flex flex-row gap-10'>
+        <div className='flex flex-row gap-10 items-center'>
+          <Link href='/'>
+            <h1>Logo</h1>
+          </Link>
+
           <Link
             href='/'
             className={`text-2xl font-semibold hover:text-gray-300 ${
@@ -37,6 +34,11 @@ const Navbar = (props: Props) => {
           >
             Top 10 Episodes
           </Link>
+        </div>
+
+        {/* Search Input */}
+        <div className=''>
+          <FilterInput />
         </div>
       </div>
     </nav>

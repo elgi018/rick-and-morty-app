@@ -27,4 +27,14 @@ export type TEpisode = {
   name: string
   episode: string
   air_date: string
+  characters: TCharacter[]
+}
+
+export type TTop10Episodes = {
+  id: string
+  name: string
+  episode: string
+  air_date: string
+  uniqueDimensionsNr: number
+  characters: TCharacter[]
 }
