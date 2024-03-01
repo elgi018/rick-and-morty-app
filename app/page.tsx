@@ -8,6 +8,5 @@ type Props = {
 }
 
 export default function Home({ searchParams: { q, page } }: Props) {
-  console.log('🚀 ~ Home ~ q:', { q, page })
   return <CharacterList q={q} page={page} />
 }

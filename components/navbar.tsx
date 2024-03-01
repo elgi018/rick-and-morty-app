@@ -1,10 +1,14 @@
+'use client'
+
 import React from 'react'
 import FilterInput from './filter-input'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 type Props = {}
 
 const Navbar = (props: Props) => {
+  const pathname = usePathname()
   return (
     <nav className='bg-gray-900 p-4 text-gray-400'>
       <div className='container flex justify-between flex-row gap-8 items-center'>
@@ -15,8 +19,25 @@ const Navbar = (props: Props) => {
         {/* Search Input */}
         <FilterInput />
 
-        {/* Top 10 Episodes */}
-        <h1>Top 10 Episodes</h1>
+        {/* Links */}
+        <div className='flex flex-row gap-10'>
+          <Link
+            href='/'
+            className={`text-2xl font-semibold hover:text-gray-300 ${
+              !pathname.includes('episodes') && 'text-gray-300'
+            }`}
+          >
+            Home
+          </Link>
+          <Link
+            href='/episodes'
+            className={`text-2xl font-semibold hover:text-gray-300 ${
+              pathname.includes('episodes') && 'text-gray-300'
+            }`}
+          >
+            Top 10 Episodes
+          </Link>
+        </div>
       </div>
     </nav>
   )
